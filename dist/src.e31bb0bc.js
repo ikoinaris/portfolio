@@ -29924,7 +29924,8 @@ var Title = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty(_assertThisInitialized(_this), "state", {
-      titleIndex: 0
+      titleIndex: 0,
+      fadeIn: true
     });
 
     return _this;
@@ -29933,27 +29934,51 @@ var Title = /*#__PURE__*/function (_Component) {
   _createClass(Title, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log('Title Component has mounted');
+      var _this2 = this;
+
+      this.timeout = setTimeout(function () {
+        return _this2.setState({
+          fadeIn: false
+        });
+      }, 2000);
       this.animateTitles();
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.titleInterval);
+      clearTimeout(this.timeout);
     }
   }, {
     key: "animateTitles",
     value: function animateTitles() {
-      var _this2 = this;
+      var _this3 = this;
 
-      setInterval(function () {
-        var titleIndex = (_this2.state.titleIndex + 1) % TITLES.length;
+      this.titleInterval = setInterval(function () {
+        var titleIndex = (_this3.state.titleIndex + 1) % TITLES.length;
 
-        _this2.setState({
-          titleIndex: titleIndex
+        _this3.setState({
+          titleIndex: titleIndex,
+          fadeIn: true
         });
+
+        _this3.timeout = setTimeout(function () {
+          return _this3.setState({
+            fadeIn: false
+          });
+        }, 2000);
       }, 4000);
     }
   }, {
     key: "render",
     value: function render() {
-      var title = TITLES[this.state.titleIndex];
-      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "I am ", title));
+      var _this$state = this.state,
+          fadeIn = _this$state.fadeIn,
+          titleIndex = _this$state.titleIndex;
+      var title = TITLES[titleIndex];
+      return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", {
+        className: fadeIn ? 'title-fade-in' : 'title-fade-out'
+      }, "I am ", title));
     }
   }]);
 
