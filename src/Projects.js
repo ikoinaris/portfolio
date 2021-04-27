@@ -22,15 +22,11 @@ class Projects extends Component {
           <div>
               <h2>Highlighted Projects</h2>
               <div>
-                  <div>
                       {
                           PROJECTS.map( PROJECT => {
-                              return (
-                                  <Project key={PROJECT.id} project={PROJECT} />
-                              );
+                              return <Project key={PROJECT.id} project={PROJECT} />;
                           })
                       }
-                  </div>
               </div>
           </div>
         );
