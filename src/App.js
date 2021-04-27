@@ -4,8 +4,16 @@ import React, { Component } from 'react';
 class App extends Component{
     constructor() {
         super();
-        this.state = { displayBio: true };
+        this.state = { displayBio: false };
+
+        //binding method to constructor
+        this.toogleDisplayBio = this.toogleDisplayBio.bind(this);
     }
+
+    toogleDisplayBio() {
+        this.setState({ displayBio: !this.state.displayBio });
+    }
+
     render() {
         return (
             <div>
@@ -18,8 +26,15 @@ class App extends Component{
                             <p>I live in Munich and code every day.</p>
                             <p>My favorite language is Java and I think React.js is awesome.</p>
                             <p>Besides coding, I also love movies and music.</p>
+                            <div>
+                                <button onClick={ this.toogleDisplayBio }>Show less</button>
+                            </div>
                         </div>
-                    ) : null
+                    ) : (
+                        <div>
+                            <button onClick={ this.toogleDisplayBio }>Read more</button>
+                        </div>
+                    )
                 }
             </div>
         )
