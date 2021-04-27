@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
+import Projects from "./Projects";
 
 
 class App extends Component{
-    constructor() {
-        super();
-        this.state = { displayBio: false };
+    state = { displayBio: false };
 
-        //binding method to constructor
-        this.toogleDisplayBio = this.toogleDisplayBio.bind(this);
-    }
-
-    toogleDisplayBio() {
+    toogleDisplayBio = () => {
         this.setState({ displayBio: !this.state.displayBio });
     }
 
@@ -36,6 +31,8 @@ class App extends Component{
                         </div>
                     )
                 }
+                <hr />
+                <Projects />
             </div>
         )
     }
