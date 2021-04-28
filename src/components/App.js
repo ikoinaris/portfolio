@@ -3,7 +3,6 @@ import Projects from "./Projects";
 import SocialProfiles from "./SocialProfiles";
 import profile_photo from "../assets/profile_photo.jpg";
 import Title from "./Title";
-import Header from "./Header";
 
 class App extends Component{
     state = { displayBio: false };
@@ -15,7 +14,6 @@ class App extends Component{
     render() {
         return (
             <div>
-                <Header />
                 <img src={profile_photo} alt={profile_photo} className='profile' />
                 <h1>Hey there!</h1>
                 <p>My name is Yannis</p>
